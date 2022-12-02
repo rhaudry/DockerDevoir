@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+ php-apache:
+  build:
+   context: ''
+   dockerfile: ./php-dockerfile
+  networks:
+   - backend
+  volumes:
+   - ./db-data/:/var/www/html/
+  ports:
+   - 80:80
+  depends_on:
+   - mysql
+ mysql:
+   build:
+    context: ''
+    dockerfile: ./db-dockerfile
+   networks:
+    - backend
+networks:
+ backend:
